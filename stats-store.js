@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 
-const DATA_DIR = path.join(__dirname, "data");
+const DATA_DIR = "/tmp";
 const STATS_FILE = path.join(DATA_DIR, "stats.json");
 const IP_HASH_SALT = process.env.STATS_SECRET || "daily-feed-news-uk-stats";
 
