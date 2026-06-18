@@ -1,0 +1,14 @@
+{
+  "name": "daily-feed-news-uk",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Daily Feed News UK — British news aggregator",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "rss-parser": "^3.13.0"
+  }
+}
