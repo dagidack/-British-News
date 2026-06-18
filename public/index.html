@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Daily Feed News UK</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="bbc-header" id="site-header">
+      <div class="bbc-header__inner">
+        <a class="bbc-logo" href="#" id="logo-home" aria-label="Home, Daily Feed News UK">
+          <span class="bbc-logo__mark" aria-hidden="true">
+            <span class="bbc-logo__block">D</span>
+            <span class="bbc-logo__block">N</span>
+            <span class="bbc-logo__block">F</span>
+          </span>
+          <span class="bbc-logo__body">
+            <span class="bbc-logo__name">Daily Feed News UK</span>
+            <span class="bbc-logo__tagline">British News</span>
+          </span>
+        </a>
+        <div class="bbc-header__meta">
+          <ul class="bbc-header__social" aria-label="Follow">
+            <li>
+              <a
+                class="bbc-social-link"
+                href="https://www.facebook.com/profile.php?id=61590985342112"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <svg class="bbc-social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                class="bbc-social-link"
+                href="https://x.com/Daily_Feed_News"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X"
+              >
+                <svg class="bbc-social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  />
+                </svg>
+              </a>
+            </li>
+          </ul>
+          <time class="bbc-clock" id="clock" datetime="" aria-live="polite">
+            <span class="bbc-clock__time" id="clock-time"></span>
+            <span class="bbc-clock__date" id="clock-date"></span>
+          </time>
+        </div>
+      </div>
+
+      <nav class="bbc-nav" aria-label="Main menu">
+        <div class="bbc-nav__inner">
+          <ul class="bbc-nav__list" id="nav-list"></ul>
+        </div>
+        <div class="bbc-region-panel" id="region-panel" hidden>
+          <div class="bbc-region-panel__inner">
+            <ul class="bbc-region-list" id="region-list-header" role="menu"></ul>
+          </div>
+        </div>
+        <div class="bbc-publisher-panel" id="publisher-panel" hidden>
+          <div class="bbc-region-panel__inner">
+            <ul class="bbc-region-list" id="publisher-list-header" role="menu"></ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main" class="bbc-main">
+      <div class="bbc-main__inner">
+        <header class="bbc-page-header">
+          <h1 class="bbc-page-title" id="page-title">Home</h1>
+        </header>
+
+        <div class="status" id="status" role="status">Loading news…</div>
+        <ol class="bbc-stories" id="articles" hidden></ol>
+
+        <section class="bbc-about" id="about-panel" hidden aria-labelledby="about-heading">
+          <div class="bbc-prose">
+            <p>
+              Daily Feed News UK is a UK news aggregator that brings together public RSS feeds from
+              national broadcasters, newspapers, and regional publishers across Britain.
+            </p>
+            <p>
+              Our aim is a clear, fast way to follow stories from London to Glasgow — national
+              headlines and local reporting in one continuous feed on the home page.
+            </p>
+            <p>
+              We do not write our own journalism. Every headline links to the original publisher
+              where you can read the full article.
+            </p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="bbc-footer" id="about">
+      <div class="bbc-footer__inner">
+        <nav class="bbc-footer__meta" aria-label="Site links">
+          <ul class="bbc-footer__meta-links">
+            <li>
+              <button type="button" class="bbc-footer__meta-link" data-tab="about">About</button>
+            </li>
+            <li><a class="bbc-footer__meta-link" href="/contact.html">Contact</a></li>
+            <li><a class="bbc-footer__meta-link" href="/privacy.html">Privacy policy</a></li>
+          </ul>
+        </nav>
+
+        <section class="bbc-footer__block bbc-footer__block--regions" aria-labelledby="footer-areas-heading">
+          <h2 class="bbc-footer__heading" id="footer-areas-heading">Regions</h2>
+          <ul class="bbc-footer__regions" id="region-list-footer"></ul>
+          <h2 class="bbc-footer__heading bbc-footer__heading--social" id="footer-social-heading">
+            Follow
+          </h2>
+          <ul class="bbc-footer__social" aria-labelledby="footer-social-heading">
+            <li>
+              <a
+                class="bbc-social-link"
+                href="https://www.facebook.com/profile.php?id=61590985342112"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <svg class="bbc-social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                class="bbc-social-link"
+                href="https://x.com/Daily_Feed_News"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X"
+              >
+                <svg class="bbc-social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </footer>
+
+    <button type="button" class="scroll-top" id="scroll-top" hidden aria-label="Scroll to top">
+      ↑
+    </button>
+
+    <script src="app.js"></script>
+  </body>
+</html>
