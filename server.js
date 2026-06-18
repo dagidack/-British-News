@@ -50,7 +50,7 @@ function clientIp(req) {
 
 app.use((req, res, next) => {
   if (req.method === "GET" && shouldTrackPath(req.path)) {
-    recordVisit(clientIp(req));
+    //recordVisit(clientIp(req));
   }
   next();
 });
