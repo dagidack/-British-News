@@ -338,6 +338,63 @@ function syncHeaderOffset() {
   document.documentElement.style.setProperty("--header-offset", `${headerEl.offsetHeight}px`);
 }
 
+function worldCupItemHtml(match, type) {
+  const meta = [match.group, match.kickoff].filter(Boolean).join(" · ");
+  const middle =
+    type === "score"
+      ? `<span class="bbc-wc-item__score">${match.score1}–${match.score2}</span>`
+      : `<span class="bbc-wc-item__score bbc-wc-item__score--fixture">v</span>`;
+
+  return `
+    <li class="bbc-wc-item">
+      <p class="bbc-wc-item__meta">${escapeHtml(meta)}</p>
+      <div class="bbc-wc-item__teams">
+        <span class="bbc-wc-item__team bbc-wc-item__team--home">${escapeHtml(match.team1)}</span>
+        ${middle}
+        <span class="bbc-wc-item__team">${escapeHtml(match.team2)}</span>
+      </div>
+    </li>
+  `;
+}
+
+async function initWorldCupWidget() {
+  const widget = document.getElementById("worldcup-widget");
+  if (!widget) return;
+
+  const scoresSection = document.getElementById("worldcup-scores-section");
+  const scoresEl = document.getElementById("worldcup-scores");
+  const fixturesEl = document.getElementById("worldcup-fixtures");
+  const statusEl = document.getElementById("worldcup-status");
+  const updatedEl = document.getElementById("worldcup-updated");
+
+  try {
+    const res = await fetch("/api/worldcup");
+    if (!res.ok) throw new Error("unavailable");
+    const data = await res.json();
+
+    const todayScores = data.todayMatches.filter((m) => m.finished);
+    const scores = todayScores.length ? todayScores : data.recentResults;
+
+    if (scores.length) {
+      scoresSection.hidden = false;
+      scoresEl.innerHTML = scores.slice(0, 5).map((m) => worldCupItemHtml(m, "score")).join("");
+    }
+
+    const todayFixtures = data.todayMatches.filter((m) => !m.finished);
+    const fixtures = [...todayFixtures, ...data.nextFixtures].slice(0, 6);
+
+    fixturesEl.innerHTML = fixtures.length
+      ? fixtures.map((m) => worldCupItemHtml(m, "fixture")).join("")
+      : `<li class="bbc-wc-item"><p class="bbc-wc-item__meta">No upcoming fixtures</p></li>`;
+
+    updatedEl.textContent = `Updated ${new Date(data.updatedAt).toLocaleString("en-GB", { timeZone: "Europe/London" })}`;
+    statusEl.textContent = "";
+  } catch {
+    statusEl.textContent = "World Cup data unavailable.";
+    updatedEl.textContent = "";
+  }
+}
+
 function initScrollUI() {
   const footer = document.getElementById("about");
   const scrollTopBtn = document.getElementById("scroll-top");
@@ -347,8 +404,10 @@ function initScrollUI() {
   const SHOW_TOP_BTN = 200;
   let ticking = false;
 
-  function nearBottom() {
-    return window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 80;
+  function atPageBottom() {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    if (maxScroll <= 0) return false;
+    return window.scrollY >= maxScroll - 80;
   }
 
   function setChromeState({ headerMinimal, footerVisible }) {
@@ -366,7 +425,7 @@ function initScrollUI() {
   function updateScrollUI() {
     const y = window.scrollY;
     const headerMinimal = y > TOP_THRESHOLD;
-    const footerVisible = nearBottom();
+    const footerVisible = atPageBottom();
 
     setChromeState({ headerMinimal, footerVisible });
     if (headerMinimal) {
@@ -475,6 +534,7 @@ async function init() {
 
     loadTab(HOME_TAB);
     initScrollUI();
+    initWorldCupWidget();
   } catch {
     statusEl.className = "status status--error";
     statusEl.textContent = "Could not start the application.";

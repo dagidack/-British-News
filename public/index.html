@@ -11,13 +11,11 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-  </head>
-  <script>
+    <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
   </head>
-  <body>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
@@ -25,9 +23,11 @@
       <div class="bbc-header__inner">
         <a class="bbc-logo" href="#" id="logo-home" aria-label="Home, Daily Feed News UK">
           <span class="bbc-logo__mark" aria-hidden="true">
-            <span class="bbc-logo__block">D</span>
-            <span class="bbc-logo__block">N</span>
-            <span class="bbc-logo__block">F</span>
+            <span class="bbc-logo__monogram">
+              <span class="bbc-logo__letter">D</span>
+              <span class="bbc-logo__letter">F</span>
+              <span class="bbc-logo__letter">N</span>
+            </span>
           </span>
           <span class="bbc-logo__body">
             <span class="bbc-logo__name">Daily Feed News UK</span>
@@ -92,7 +92,8 @@
     </header>
 
     <main id="main" class="bbc-main">
-      <div class="bbc-main__inner">
+      <div class="bbc-main__inner bbc-main__layout">
+        <div class="bbc-main__content">
         <header class="bbc-page-header">
           <h1 class="bbc-page-title" id="page-title">Home</h1>
         </header>
@@ -116,6 +117,23 @@
             </p>
           </div>
         </section>
+        </div>
+
+        <aside class="bbc-wc-widget" id="worldcup-widget" aria-labelledby="worldcup-heading">
+          <div class="bbc-wc-widget__head">
+            <h2 class="bbc-wc-widget__title" id="worldcup-heading">World Cup 2026</h2>
+            <p class="bbc-wc-widget__updated" id="worldcup-updated"></p>
+          </div>
+          <section class="bbc-wc-widget__section" id="worldcup-scores-section" hidden>
+            <h3 class="bbc-wc-widget__label">Scores</h3>
+            <ul class="bbc-wc-list" id="worldcup-scores"></ul>
+          </section>
+          <section class="bbc-wc-widget__section">
+            <h3 class="bbc-wc-widget__label">Fixtures</h3>
+            <ul class="bbc-wc-list" id="worldcup-fixtures"></ul>
+          </section>
+          <p class="bbc-wc-widget__status" id="worldcup-status">Loading…</p>
+        </aside>
       </div>
     </main>
 
