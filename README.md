@@ -15,16 +15,7 @@ npm start
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Visit statistics (private)
-
-Set a password, then open `/stats` to view visitor numbers:
-
-```bash
-export STATS_PASSWORD=your-secret-password
-npm start
-```
-
-The stats page is password-protected. Visit counts are stored locally in `data/stats.json` (not committed to git). Page views on the main site, contact, and privacy pages are tracked; static assets and the stats page itself are excluded.
+Visitor analytics are handled by [Vercel Web Analytics](https://vercel.com/docs/analytics) when deployed on Vercel.
 
 ## Regions
 
@@ -34,6 +25,7 @@ The site covers UK nations and English regions, including major cities such as L
 
 ```
 ├── feeds.js        # RSS feed configuration per region
+├── worldcup.js     # World Cup 2026 fixtures/scores API helper
 ├── server.js       # Express API and static file server
 ├── public/
 │   ├── index.html
